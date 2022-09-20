@@ -1,0 +1,74 @@
+import binarytree as bt
+
+class Node:
+    def __init__(self,value,index) -> None:
+        self.value = value
+        self.index = index
+        self.left = None
+        self.right = None
+
+def createBinaryTree(arr):
+    root = Node(arr[0],0)
+    for i in range(1,len(arr)):
+        n = Node(arr[i],i)
+        c = root
+        while True:
+            if c.value == n.value:
+                break
+            if n.value < c.value:
+                if c.left!=None:
+                    c = c.left
+                else:
+                    c.left = n
+                    break
+            else:
+                if c.right!=None:
+                    c = c.right
+                else:
+                    c.right = n
+                    break
+    return root
+
+
+def printBTree(node: Node, btn: bt.Node, spaces=""):
+    if node is None: 
+       # print(spaces+"-")
+        return
+    
+    if node.left is not None :
+        btn.left = bt.Node(node.left.value)
+    if node.right is not None:
+        btn.right= bt.Node(node.right.value)
+        
+    #print(node.value)    
+    #print("{}{} {}".format(spaces,node.value,node.index ))
+    #printBTree(node.left,btn.left)
+    #printBTree(node.right,btn.right)
+    printBTree(node.left,btn.left,spaces+"   ")
+    printBTree(node.right,btn.right,spaces+"   ")
+
+
+########
+
+
+def printPostorder(root):
+  
+    if root:
+  
+        # Recursion por la izq
+        printPostorder(root.left)
+  
+        # recursion por la der
+        printPostorder(root.right)
+  
+        # dato del nodo
+        print(root.value),
+
+arr =[15,17,18,14,22,42,25,19] #input
+#arr = [19,14,18,17,15,25,22,42]
+root = createBinaryTree(arr)
+br = bt.Node(arr[0])
+printBTree(root,br)
+print(br)
+
+printPostorder(root)
