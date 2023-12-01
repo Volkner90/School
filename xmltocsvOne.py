@@ -6,7 +6,7 @@ import os
 data = []
 
 # Iterate over all XML files in your folder
-xml_folder = r"C:\Users\jjcuevas\OneDrive - Intel Corporation\Documents\labelImg-master\datos"
+xml_folder = r"C:\Users\jonathan\data" #Your file directory here
 for xml_file in os.listdir(xml_folder):
     if xml_file.endswith(".xml"):
         xml_path = os.path.join(xml_folder, xml_file)
